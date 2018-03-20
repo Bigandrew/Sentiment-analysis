@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-os.chdir('C:/DAI/442BMWDealershipRiskManagement/rawdata')
+os.chdir()
 print os.getcwd()
 
 # read labeled data from local disk
@@ -24,7 +24,7 @@ noriskdata = labeled_data[ labeled_data ['is_risk']!= 1]
 # noriskpost.to_csv("noriskpost.txt", sep= '\t',  encoding='utf-8', header= False, index= False )
 
 # read unlabeled data / new posts info from local file
-new_data = pd.read_csv('C:/DAI/442BMWDealershipRiskManagement/rawdata/autocrawl_posts_201704110856.csv')
+new_data = pd.read_csv('/autocrawl_posts_201704110856.csv')
 unlabeled_data = new_data[['id', 'post_date', 'post_content',  'dealer']]
 udataP=unlabeled_data.iloc[ :40,:] # only take first 40 rows of new posts to save some time
 # newpost = unlabeled_data[['post_content']].reset_index(drop=True) # all rows of new posts
@@ -36,7 +36,7 @@ udataP=unlabeled_data.iloc[ :40,:] # only take first 40 rows of new posts to sav
 # 1.定义结巴分词函数，返回分词列表如：[['我','爱','北京','天安门'],['你','好'],['hello']]，list ['我','爱','北京','天安门']代表一条评论
 import jieba
 def read_post(df):
-    stop = [line.strip().decode('utf-8') for line in open('C:/DAI/Sentiment analysis/RiskyDealers/labeled data/stop.txt', 'r').readlines()]  # 停用词列表
+    stop = [line.strip().decode('utf-8') for line in open('/stop.txt', 'r').readlines()]  # 停用词列表
     posts = list(df.post_content)
     str = []  # 空白列表
     for post in posts:
